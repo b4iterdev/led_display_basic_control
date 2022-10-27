@@ -7,8 +7,21 @@
 #include <Arduino.h>
 
 //Assign pins as follow
-int led1 = 2,led2 = 3,led3 = 4,led4 = 5,led5 = 6,led6 = 7,led7 = 8; 
-bool ledStat1 = 0,ledStat2 = 0,ledStat3 = 0,ledStat4 = 0,ledStat5 = 0,ledStat6 = 0,ledStat7  = 0;
+#define led1 2
+#define led2 3
+#define led3 4
+#define led4 5
+#define led5 6
+#define led6 7
+#define led7 8
+#define led8 9
+#define led9 10
+#define led10 11
+#define led11 12
+#define led12 13
+#define led13 A1
+#define led14 A2
+#define led15 A3
 
 void setup() 
 {
@@ -20,30 +33,26 @@ void setup()
   pinMode(led5,OUTPUT);
   pinMode(led6,OUTPUT);
   pinMode(led7,OUTPUT);
+  pinMode(led8,OUTPUT);
+  pinMode(led9,OUTPUT);
+  pinMode(led10,OUTPUT);
+  pinMode(led11,OUTPUT);
+  pinMode(led12,OUTPUT);
+  pinMode(led13,OUTPUT);
+  pinMode(led14,OUTPUT);
+  pinMode(led15,OUTPUT);
   Serial.begin(9600);
   while (! Serial); 
-  Serial.println("Nhap so den led tu 0 den 6 hoac 'x' de tat");
+  Serial.println("Nhap so den led tu 0 den 9 hoac 'x' de tat");
 }
 
-bool switchToggle(bool toToggle) {
-  //This funtion will funtion like a toggle boolean value between 0 and 1.
-  if (toToggle == 0)
-  {
-    toToggle = 1;
-  } else {
-    toToggle = 0;
+void clearAll() {
+  for (int i=1;i<=13;i++) {
+    digitalWrite(i,0);
   }
-  return toToggle;
-}
-
-void switchLED(bool status, int led) {
-  //This funtion will toggle the LED on execution.
- if (status == 1)
- {
-  digitalWrite(led,1);
- } else {
-  digitalWrite(led,0);
- }
+  digitalWrite(led13,0);
+  digitalWrite(led14,0);
+  digitalWrite(led15,0);
 }
 
 void loop() {
@@ -52,42 +61,29 @@ void loop() {
     char input = Serial.read();
     switch(input) {
     case '0':
-      ledStat1 = switchToggle(ledStat1);
-      switchLED(ledStat1,led1);
+      clearAll();
+      digitalWrite()
       break;
     case '1':
-      ledStat2 = switchToggle(ledStat2);
-      switchLED(ledStat2,led2);
+      clearAll();
       break;
     case '2':
-      ledStat3 = switchToggle(ledStat3);
-      switchLED(ledStat3,led3);
+      clearAll();
       break;
     case '3':
-      ledStat4 = switchToggle(ledStat4);
-      switchLED(ledStat4,led4);
+      clearAll();
       break;
     case '4':
-      ledStat5 = switchToggle(ledStat5);
-      switchLED(ledStat5,led5);
+      clearAll();
       break;
     case '5':
-      ledStat6 = switchToggle(ledStat6);
-      switchLED(ledStat6,led6);
+      clearAll();
       break;
     case '6':
-      ledStat7 = switchToggle(ledStat7);
-      switchLED(ledStat7,led7);
+      clearAll();
       break;
     case 'x':
-      ledStat1 = 0,ledStat2 = 0,ledStat3 = 0,ledStat4 = 0,ledStat5 = 0,ledStat6 = 0,ledStat7  = 0;
-      switchLED(ledStat1,led1);
-      switchLED(ledStat2,led2);
-      switchLED(ledStat3,led3);
-      switchLED(ledStat4,led4);
-      switchLED(ledStat5,led5);
-      switchLED(ledStat6,led6);
-      switchLED(ledStat7,led7);
+      clearAll();
       break;
     }
   }
