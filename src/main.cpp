@@ -62,7 +62,6 @@ void loop() {
     switch(input) {
     case '0':
       clearAll();
-      digitalWrite()
       break;
     case '1':
       clearAll();
